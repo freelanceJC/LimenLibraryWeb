@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://www.springframework.org/schema/beans" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+		http://www.springframework.org/schema/context 
+		http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+	<bean id="propertyConfigurer"
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<list>
+				<value>classpath:config.properties</value>
+			</list>
+		</property>
+	</bean>
+
+	
+	<!--
+	<import resource="jdbcContext.xml" />
+
+	<import resource="taskContext.xml" />
+
+	<import resource="txContext.xml" /> -->
+
+	<context:annotation-config />
+	<!-- <context:component-scan  base-package="edu.limen.limenlibrary.controller"></context:component-scan> -->
+
+ 	<bean id="appContext" class="edu.limen.limenlibrary.context.AppContext">
+ 		<property name="testStr" value="${test.string}" />
+ 		<property name="webServiceHostUrl" value="${web.service.url}" />
+ 		<property name="webServiceTimeout" value="${web.service.timeout}" />
+ 		<property name="contextRoot" value="${context.root}" />
+ 		<property name="springRoot" value="${spring.root}" />
+ 		
+	</bean>
+
+ 	<bean id="appConstant" class="edu.limen.limenlibrary.constant.AppConstant" />
+ 	<bean id="webServiceConstant" class="edu.limen.limenlibrary.constant.WebServiceConstant" />
+ 	<bean id="errorCodeConstant" class="edu.limen.limenlibrary.constant.ErrorCodeConstant" />
+
+	<!-- Services -->
+ 	
+ 	<bean id="webServiceClientService" class="edu.limen.limenlibrary.service.impl.WebServiceClientService" />
+ 	
+ 	<bean id="securityService" class="edu.limen.limenlibrary.service.impl.SecurityService" />
+ 	
+
+	<!--  Utilities -->
+	<bean id="fileSystemUtils" class="edu.limen.limenlibrary.utility.FileSystemUtils" />
+	
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+
+    	<!-- one of the properties available; the maximum file size in bytes -->
+    	<property name="maxUploadSize" value="100000"/>
+	</bean>
+	<import resource="security.xml" />
+</beans>

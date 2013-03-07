@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+  xmlns:beans="http://www.springframework.org/schema/beans"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+           http://www.springframework.org/schema/security
+           http://www.springframework.org/schema/security/spring-security-3.1.xsd">
+       
+	<global-method-security secured-annotations="enabled" />
+           
+	<http pattern="/css/**" security="none"/>
+	<http pattern="/js/**" security="none"/>
+	<http pattern="/themes/**" security="none"/>
+	<http pattern="/ui/**" security="none"/>
+	<http pattern="/jsp/**" security="none"/>
+	<http pattern="/images/**" security="none"/>
+	
+	<http auto-config='true' >
+ 		<intercept-url pattern="/web/login" access="IS_AUTHENTICATED_ANONYMOUSLY" />
+		<intercept-url pattern="/web/loginform.html" access="IS_AUTHENTICATED_ANONYMOUSLY" />
+		
+    	<intercept-url pattern="/**" access="ROLE_USER" />
+    	<form-login login-page='/web/login'
+    		authentication-failure-url="/web/login" 
+    	/>
+    	 
+    	<logout logout-success-url="/logout" />
+		<session-management invalid-session-url="/web/login">
+        	<concurrency-control max-sessions="1"
+        	 error-if-maximum-exceeded="true"
+        	 />
+    	</session-management>
+
+    	<logout delete-cookies="JSESSIONID" /> 
+  	</http>
+  	
+	<authentication-manager>
+		<authentication-provider ref='authenticationProvider'/>
+    </authentication-manager>
+
+	<beans:bean id="authenticationProvider" class="edu.limen.limenlibrary.security.AuthenticationManager" />
+
+ 	
+  	
+</beans:beans>

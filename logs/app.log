@@ -1,0 +1,6 @@
+18 Feb 2013 11:22:55,204 [http-8080-2] INFO  edu.limen.limenlibrary.controller.HelloController  - handleRequest() begin
+18 Feb 2013 11:22:55,204 [http-8080-2] DEBUG edu.limen.limenlibrary.controller.HelloController  - debug log here
+18 Feb 2013 11:22:55,204 [http-8080-2] INFO  edu.limen.limenlibrary.controller.HelloController  - handleRequest() end
+18 Feb 2013 17:09:16,595 [http-8080-2] INFO  edu.limen.limenlibrary.controller.HelloController  - handleRequest() begin
+18 Feb 2013 17:09:16,595 [http-8080-2] DEBUG edu.limen.limenlibrary.controller.HelloController  - debug log here
+18 Feb 2013 17:09:16,595 [http-8080-2] INFO  edu.limen.limenlibrary.controller.HelloController  - handleRequest() end
